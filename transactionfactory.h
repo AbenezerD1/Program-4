@@ -9,7 +9,7 @@
 
 class TransactionFactory {
 public:
-    Transaction* createTransaction(char type) {
+    static Transaction* createTransaction(char type) {
         switch (type) {
         case 'B':
             return new Borrow();
