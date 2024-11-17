@@ -15,7 +15,15 @@ int main() {
 		cout << "File could not be opened." << endl;
 		return 1;
 	}
-    MovieFactory movieFactory;
+	HashTable movieTable(100);
+	while (!infile.eof()) {
+		string line;
+		getline(infile, line);
+		Movie* movie = MovieFactory::createMovie(line);
+		if (movie != nullptr) {
+			// movieTable.insert(movie);
+		}
+	}
 
 	ifstream infile2("data4customers.txt");
 	if (!infile2) {
