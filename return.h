@@ -7,6 +7,7 @@
 
 class Return : public Transaction {
 public:
+    Return();
     void doTransaction(HashTable& ht);
     void setData(std::string data);
     void display() const;
