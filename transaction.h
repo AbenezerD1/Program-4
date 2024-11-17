@@ -7,7 +7,7 @@ class Transaction {
 public:
 
 private:
-
+    char type; // B, R, I, H
 };
 
 #endif
