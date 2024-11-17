@@ -22,7 +22,7 @@ Movie class
   - year it released
 - getter
   - getTitle
-  - getGenere
+  - getGenre
   - getReleaseDate
   - getDirectorName
 - comparison operator overloaded to compare year it was released
