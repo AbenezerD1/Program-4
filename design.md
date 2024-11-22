@@ -1,4 +1,4 @@
-# Designing a movie inventory  tracking system
+# Movie Inventory tracking system
 
 ## Priorities:
 * Able to very quickly search for an movie
@@ -16,7 +16,7 @@ A Movie factory
 
 Movie class
 - stores(protected)
-  - title 
+  - title
   - genre
   - director
   - year it released
@@ -42,7 +42,7 @@ Classics class is a child class of the Movie class
 ### Inventory Manager:
 - handles inventory and transactions
 - has a Inventory
-- has customers 
+- has customers
 - methods
   - buildInventory
   - addCustomers
@@ -62,12 +62,12 @@ TransactionStrategies
 - creates pure virtual method processTranscation
 
 Borrow
-  - perform transaction and add to customer history
-Withdraw
-  - perform transaction
-Inventory
-  - prints current inventory
-History
-  - prints current history of a customer
+- perform transaction and add to customer history
+  Withdraw
+- perform transaction
+  Inventory
+- prints current inventory
+  History
+- prints current history of a customer
 	
 
