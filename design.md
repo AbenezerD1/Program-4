@@ -22,11 +22,11 @@
       * Key is movie title
       * Value is Movie object ptr
   * Contains capacity variable to keep track of current hashtable capacity
-  * Private hash function
-  * Insert method that takes Movie ptr and gets its title to hash it
-  * Get method that takes a key to return the Movie object if it is found in the hashtable
-  * Remove method that takes a key and remove the Movie that is associated with the key
-  * Print method that prints out all Movies in the hashtable
+  * Private hash function()
+  * insert() method that takes Movie ptr and gets its title to hash it
+  * get() method that takes a key and Movie ptr to return true if it is found in the hashtable
+  * remove() method that takes a key and remove the Movie that is associated with the key
+  * print() method that prints out all Movies in the hashtable
 * **MovieFactory**
   * Has static method createMovie that creates movie objects
   * Allows us to easily add different types of movies without modifying the driver code
@@ -55,11 +55,11 @@
       * Key is customer ID
       * Value is Customer object ptr
   * Contains a capacity that keeps track of current hashtable
-  * Private hash function
-  * Insert method that takes a key and a Customer ptr
-  * Get method that takes a key to return the Customer object if it is found in the hashtable
-  * Remove method that takes a key and remove the Customer that is associated with the key
-  * Print method that prints out all Customer in the hashtable
+  * Private hash() function
+  * insert() method that takes a key and a Customer ptr
+  * get() method that takes a key and Customer ptr to return true if it is found in the hashtable
+  * remove() method that takes a key and remove the Customer that is associated with the key
+  * print() method that prints out all Customer in the hashtable
 * **CustomerFactory**
   * Has static method createCustomers that creates customers objects
 * Customer
@@ -70,6 +70,7 @@
   * Has static method createTransaction() that creates Transaction objects
 * Transaction
   * Abstract base class that has a pure virtual doTransaction() method
+  * doTransaction() takes in a MovieTable reference and a CustomerTable reference
 * Borrow
   * Contains a customerID and reference to movie transaction vector of the customer
   * doTransaction()
@@ -80,7 +81,6 @@
   * doTransaction method
     * If movie exists in inventory increment count from inventory
 * Inventory
-  * Contains a pointer to movie hash table
   * doTransaction()
     * Prints the current movies in the inventory
 * History
