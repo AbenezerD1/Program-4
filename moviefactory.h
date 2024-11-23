@@ -1,8 +1,7 @@
 #ifndef MOVIEFACTORY_H
 #define MOVIEFACTORY_H
 
-#include "movie.h"
-#include "classical.h"
+#include "classics.h"
 #include "drama.h"
 #include "comedy.h"
 #include <string>
@@ -19,12 +18,13 @@ public:
         // Parse the input
         stream >> type;
         if (type != 'F' && type != 'D' && type != 'C') {
+            std::cout << "ERROR: " << type << " Invalid Genre. Try Again." << std::endl;
             return nullptr;
         }
         stream.ignore(2); // Ignore comma and space
         stream >> stock;
-        stream.ignore(2); // Ignore comma and space
-        // Special parsing for Classical movies
+        stream.ignore(2);
+        // Special parsing for Classics movies
         if (type == 'C') {
             std::string actorFirstName, actorLastName;
             int month;
@@ -32,19 +32,19 @@ public:
             director.erase(director.find_last_not_of(" ") + 1); // Trim trailing spaces
             stream.ignore(1); // Ignore space
             stream >> actorFirstName >> actorLastName;
-            stream.ignore(1); // Ignore space
+            stream.ignore(1);
             std::getline(stream, title, ',');
             title.erase(title.find_last_not_of(" ") + 1); // Trim trailing spaces
-            stream.ignore(1); // Ignore space
+            stream.ignore(1);
             stream >> month >> year;
-            return new Classical(stock, director, title, actorFirstName, actorLastName, month, year);
+            return new Classics(stock, director, title, actorFirstName, actorLastName, month, year);
         }
         std::getline(stream, director, ',');
         director.erase(director.find_last_not_of(" ") + 1); // Trim trailing spaces
         stream.ignore(1); // Ignore space
         std::getline(stream, title, ',');
         title.erase(title.find_last_not_of(" ") + 1); // Trim trailing spaces
-        stream.ignore(1); // Ignore space
+        stream.ignore(1);
         stream >> year;
         // Create movie
         switch (type) {
