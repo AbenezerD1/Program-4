@@ -1,0 +1,26 @@
+#ifndef CUSTOMERTABLE_H
+#define CUSTOMERTABLE_H
+
+#include "customer.h"
+#include <iostream>
+
+class CustomerTable {
+public:
+    CustomerTable(int cap);
+    ~CustomerTable();
+    bool insert(Customer* customer);
+    bool remove(int customerID);
+    bool get(int customerID, Customer* customer);
+    void print() const;
+    int getSize() const { return size; }
+    bool isEmpty() const { return size == 0; }
+
+private:
+    Customer** table; // Array of Customer pointers
+    int capacity;
+    int size;
+    int hash(int customerID) const;
+    int probe(int index) const; // Linear probing logic
+};
+
+#endif

@@ -2,11 +2,13 @@
 #define HISTORY_H
 
 #include "transaction.h"
-#include "movie.h"
 
 class History : public Transaction {
 public:
+    History(int customerID) : Transaction('H') {}
+    void doTransaction(MovieTable& movieTable, CustomerTable& customerTable) {}
 private:
+    int customerID;
 };
 
 #endif

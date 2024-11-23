@@ -5,9 +5,8 @@
 
 class Inventory : public Transaction {
 public:
-
-private:
-
+    Inventory() : Transaction('I') {}
+    void doTransaction(MovieTable& movieTable, CustomerTable& customerTable) {}
 };
 
 #endif
