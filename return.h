@@ -2,18 +2,18 @@
 #define RETURN_H
 
 #include "transaction.h"
-#include "movie.h"
-#include "hashtable.h"
 
 class Return : public Transaction {
+    friend std::ostream& operator<<(std::ostream& os, const Return& r);
 public:
-    Return();
-    void doTransaction(HashTable& ht);
-    void setData(std::string data);
-    void display() const;
+    Return(int customerID, char mediaType, char movieType, Movie* movie) : Transaction('R'), customerID(customerID), mediaType(mediaType), movieType(movieType), movie(movie) {}
+    void doTransaction(MovieTable& movieTable, CustomerTable& customerTable) {}
+    Movie* getMovie() const { return movie; }
 private:
     int customerID;
-    Movie movie;
+    char mediaType; // D
+    char movieType; // F, D, or C
+    Movie* movie;
 };
 
 #endif

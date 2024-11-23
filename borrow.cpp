@@ -1,6 +1,6 @@
-#include "return.h"
+#include "borrow.h"
 
-void Return::doTransaction(MovieTable& movieTable, CustomerTable& customerTable) {
+void Borrow::doTransaction(MovieTable& movieTable, CustomerTable& customerTable) {
     // If movie exists in hashtable
     if (!movieTable.get(movie->getTitle(), movie)) {
         std::cout << "ERROR: Borrow Transaction Failed -- Movie does not Exist in the Inventory" << std::endl;
@@ -12,11 +12,14 @@ void Return::doTransaction(MovieTable& movieTable, CustomerTable& customerTable)
         std::cout << "ERROR: Borrow Transaction Failed -- Customer " << customerID << " does not exist" << std::endl;
     }
     customer->addTransaction(this);
-    // Increase stock if movie and customer exists
-    movie->increaseStock();
+    // Decrease stock if movie and customer exists
+    if (!movie->decreaseStock()) {
+        std::cout << "ERROR: Borrow Transaction Failed -- Not enough in the Stock" << std::endl;
+        return;
+    }
 }
 
-std::ostream& operator<<(std::ostream& os, const Return& r) {
-    os << "Returned " << r.getMovie()->getTitle() << " by " << r.getMovie()->getDirector() << std::endl;
+std::ostream& operator<<(std::ostream& os, const Borrow& b) {
+    os << "Borrowed " << b.getMovie()->getTitle() << " by " << b.getMovie()->getDirector() << std::endl;
     return os;
 }
