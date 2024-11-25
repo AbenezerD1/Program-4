@@ -1,7 +1,7 @@
 # Movie Inventory tracking system
 
 ## Priorities:
-* Able to quickly search for a movie or customer with hashtable
+* Able to quickly search for a customer with hashtable
 * Easily search using all movie characteristics
 * Modular design so it is easy to iterate on
 * Invalidates improper inputs and prints the error
@@ -11,28 +11,27 @@
 ## Design Overview
 
 ### Driver
-  * Instantiates a hashtable of Movie objects from a text file
-  * Instantiates a hashtable of Customer objects from a text file
-  * Creates transaction objects and calls them to do the transaction
+  * Instantiates three BSTs of Movies (Comedy, Drama, Classics) from a text file
+  * Instantiates a hashtable of Customers from a text file
+  * Creates Transactions and calls their doTransaction() to do the transaction
 
 ### Movie creation:
-* **MovieTable**
-  * Contains a vector of list of MovieNode ptr
-    * MovieNode struct
-      * Key is movie title
-      * Value is Movie object ptr
-  * Contains capacity variable to keep track of current hashtable capacity
-  * Private hash function()
-  * insert() method that takes Movie ptr and gets its title to hash it
-  * get() method that takes a key and Movie ptr to return true if it is found in the hashtable
-  * remove() method that takes a key and remove the Movie that is associated with the key
-  * print() method that prints out all Movies in the hashtable
+* **BST<Movie>**
+  * Has a BSTNode ptr to root node
+    * BSTNode struct
+    * Movie ptr data
+  * BSTNode ptr to left node
+  * BSTNode ptr to left node
+  * insert() method that takes Movie ptr and inserts based on sorting criteria
+  * get() method that takes string key and Movie ptr, returns true if found
+  * print() method that prints each movie in sorted order
 * **MovieFactory**
   * Has static method createMovie that creates movie objects
   * Allows us to easily add different types of movies without modifying the driver code
 * Movie
   * A object that has a title, genre, stock, director, and year
   * Contains functions that increase and decrease the stock
+  * Has virtual sorting key function for BST to sort it by
   * Base class to all movies
   * Overloads the comparison operators \== and \!=
   * Overloads the output operator <<
@@ -46,7 +45,7 @@
   * Contains the first name and last name of the major actor
   * Contains the month of release of the movie
   * Overloads and overrides the comparison operators \== and \!=
-  * Overloads and ovverides the output operator
+  * Overloads and overrides the output operator
 
 ### Customers:
 * **CustomerTable**
@@ -70,7 +69,7 @@
   * Has static method createTransaction() that creates Transaction objects
 * Transaction
   * Abstract base class that has a pure virtual doTransaction() method
-  * doTransaction() takes in a MovieTable reference and a CustomerTable reference
+  * doTransaction() takes in references to the Movie BSTs and a CustomerTable reference
 * Borrow
   * Contains a customerID and reference to movie transaction vector of the customer
   * doTransaction()
