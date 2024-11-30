@@ -1,19 +1,21 @@
 #include "borrow.h"
+#include "customer.h"
 
-void Borrow::doTransaction(MovieTable& movieTable, CustomerTable& customerTable) {
-    // If movie exists in hashtable
-    if (!movieTable.get(movie->getTitle(), movie)) {
-        std::cout << "ERROR: Borrow Transaction Failed -- Movie does not Exist in the Inventory" << std::endl;
-        return;
-    }
+void Borrow::doTransaction(BST<Movie>& comedyTree, BST<Movie>& dramaTree, BST<Movie>& classicsTree, CustomerTable& customerTable) {
     // If customer exists in hashtable, add transaction to history
     Customer* customer = nullptr;
     if (!customerTable.get(customerID, customer)) {
         std::cout << "ERROR: Borrow Transaction Failed -- Customer " << customerID << " does not exist" << std::endl;
     }
     customer->addTransaction(this);
-    // Decrease stock if movie and customer exists
-    if (!movie->decreaseStock()) {
+    // Decrease stock if customer exists
+    // If movie stock is 0 and movie is classics
+    if (!movie->decrementStock() && movie->getGenre() == 'C') {
+        // Check if title matches existing movie, but different director
+        // Movie* otherMovie = nullptr;
+        // if (classicsTree.get(KEY, otherMovie) && movie->getDirector() != otherMovie->getDirector()) {
+        //     // SOMETHING
+        // }
         std::cout << "ERROR: Borrow Transaction Failed -- Not enough in the Stock" << std::endl;
         return;
     }

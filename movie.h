@@ -12,10 +12,12 @@ class Movie {
 public:
     Movie(char genre, int stock, std::string director, std::string name, int year);
     virtual ~Movie();
+    virtual std::string getSortingKey() const = 0;
     char getGenre() const;
     int getStock() const;
-    bool decreaseStock();
-    void increaseStock();
+    bool decrementStock();
+    void incrementStock();
+    void increaseStock(int amount);
     std::string getDirector() const;
     std::string getTitle() const;
     int getYear() const;

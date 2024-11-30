@@ -1,7 +1,8 @@
 #include "history.h"
+#include "customer.h"
 
 // Prints customer's transaction history
-void History::doTransaction(MovieTable& movieTable, CustomerTable& customerTable) {
+void History::doTransaction(BST<Movie>& comedyTree, BST<Movie>& dramaTree, BST<Movie>& classicsTree, CustomerTable& customerTable) {
     Customer* customer = nullptr;
     if (!customerTable.get(customerID, customer)) {
         std::cout << "ERROR: History Transaction Failed -- Customer " << customerID << " does not exist" << std::endl;

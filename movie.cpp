@@ -12,16 +12,20 @@ int Movie::getStock() const {
     return stock;
 }
 
-bool Movie::decreaseStock() { 
-    if (stock - 1 < 0) { 
+bool Movie::decrementStock() { 
+    if (stock == 0) { 
         return false;
     }
     stock--;
     return true;
 }
 
-void Movie::increaseStock() {
+void Movie::incrementStock() {
     stock++;
+}
+
+void Movie::increaseStock(int amount) {
+    stock += amount;
 }
 
 std::string Movie::getDirector() const {

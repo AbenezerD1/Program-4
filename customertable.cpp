@@ -1,4 +1,5 @@
 #include "customertable.h"
+#include "customer.h"
 
 CustomerTable::CustomerTable(int cap) : capacity(cap), size(0) {
     table = new Customer*[capacity];
@@ -22,10 +23,10 @@ bool CustomerTable::insert(Customer* customer) {
     if (size >= capacity) {
         return false;
     }
-
+    // Key is customer ID
     int customerID = customer->getID();
     int index = hash(customerID);
-
+    // Linear probing
     for (int i = 0; i < capacity; ++i) {
         int newIndex = probe(index + i);
         if (table[newIndex] == nullptr) {
@@ -44,7 +45,7 @@ bool CustomerTable::insert(Customer* customer) {
 
 bool CustomerTable::remove(int customerID) {
     int index = hash(customerID);
-
+    // Linear probing
     for (int i = 0; i < capacity; ++i) {
         int newIndex = probe(index + i);
         // Customer not found
@@ -63,7 +64,7 @@ bool CustomerTable::remove(int customerID) {
 
 bool CustomerTable::get(int customerID, Customer* customer) {
     int index = hash(customerID);
-
+    // Linear probing
     for (int i = 0; i < capacity; ++i) {
         int newIndex = probe(index + i);
         // Customer not found
@@ -80,18 +81,6 @@ bool CustomerTable::get(int customerID, Customer* customer) {
     return false;
 }
 
-void CustomerTable::print() const {
-    for (int i = 0; i < capacity; ++i) {
-        if (table[i] != nullptr) {
-            std::cout << "Bucket " << i << ": [ID: " << table[i]->getID()
-                      << ", Name: " << table[i]->getFirstName() << " "
-                      << table[i]->getLastName() << "]\n";
-        } else {
-            std::cout << "Bucket " << i << ": [empty]\n";
-        }
-    }
-}
-
 int CustomerTable::hash(int customerID) const {
     // Sum of digits
     int sumOfDigits = 0;
@@ -100,7 +89,6 @@ int CustomerTable::hash(int customerID) const {
         sumOfDigits += tempID % 10;
         tempID /= 10;
     }
-
     // Multiply sum by a prime number and mod with capacity
     return (sumOfDigits * 31 + customerID * 7) % capacity;
 }

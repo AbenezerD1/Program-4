@@ -6,7 +6,7 @@
 class Inventory : public Transaction {
 public:
     Inventory() : Transaction('I') {}
-    void doTransaction(MovieTable& movieTable, CustomerTable& customerTable) {}
+    void doTransaction(BST<Movie>& comedyTree, BST<Movie>& dramaTree, BST<Movie>& classicsTree, CustomerTable& customerTable);
 };
 
 #endif

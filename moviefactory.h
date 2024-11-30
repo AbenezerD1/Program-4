@@ -5,6 +5,7 @@
 #include "drama.h"
 #include "comedy.h"
 #include <string>
+#include <sstream>
 
 class MovieFactory {
 public:
@@ -31,10 +32,10 @@ public:
             std::getline(stream, director, ',');
             director.erase(director.find_last_not_of(" ") + 1); // Trim trailing spaces
             stream.ignore(1); // Ignore space
-            stream >> actorFirstName >> actorLastName;
-            stream.ignore(1);
             std::getline(stream, title, ',');
             title.erase(title.find_last_not_of(" ") + 1); // Trim trailing spaces
+            stream.ignore(1);
+            stream >> actorFirstName >> actorLastName;
             stream.ignore(1);
             stream >> month >> year;
             return new Classics(stock, director, title, actorFirstName, actorLastName, month, year);

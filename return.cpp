@@ -1,19 +1,15 @@
 #include "return.h"
+#include "customer.h"
 
-void Return::doTransaction(MovieTable& movieTable, CustomerTable& customerTable) {
-    // If movie exists in hashtable
-    if (!movieTable.get(movie->getTitle(), movie)) {
-        std::cout << "ERROR: Borrow Transaction Failed -- Movie does not Exist in the Inventory" << std::endl;
-        return;
-    }
+void Return::doTransaction(BST<Movie>& comedyTree, BST<Movie>& dramaTree, BST<Movie>& classicsTree, CustomerTable& customerTable) {
     // If customer exists in hashtable, add transaction to history
     Customer* customer = nullptr;
     if (!customerTable.get(customerID, customer)) {
         std::cout << "ERROR: Borrow Transaction Failed -- Customer " << customerID << " does not exist" << std::endl;
     }
     customer->addTransaction(this);
-    // Increase stock if movie and customer exists
-    movie->increaseStock();
+    // Increase stock if customer exists
+    movie->incrementStock();
 }
 
 std::ostream& operator<<(std::ostream& os, const Return& r) {
