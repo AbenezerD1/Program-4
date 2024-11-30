@@ -10,6 +10,8 @@ class Classics : public Movie {
     }
 public:
     Classics(int stock, const std::string& director, const std::string& title, const std::string& actorFirstName, const std::string& actorLastName, int month, int year);
+    std::string getSortingKey() const;
+    std::string getMergeKey() const;
     std::string getMajorActorFirstName();
     std::string getMajorActorLastName();
     int getMonth();

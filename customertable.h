@@ -1,8 +1,9 @@
 #ifndef CUSTOMERTABLE_H
 #define CUSTOMERTABLE_H
 
-#include "customer.h"
+// #include "customer.h"
 #include <iostream>
+class Customer;
 
 class CustomerTable {
 public:
@@ -11,7 +12,6 @@ public:
     bool insert(Customer* customer);
     bool remove(int customerID);
     bool get(int customerID, Customer* customer);
-    void print() const;
     int getSize() const { return size; }
     bool isEmpty() const { return size == 0; }
 

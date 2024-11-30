@@ -5,6 +5,9 @@
 class Drama : public Movie {
 public:
     Drama(int stock, std::string director, std::string title, int year) : Movie('D', stock, director, title, year) {}
+    std::string getSortingKey() const {
+        return getDirector() + " " + getTitle();
+    }
 };
 
 #endif
