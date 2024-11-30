@@ -1,6 +1,6 @@
 #include "movie.h"
 
-Movie::Movie(char genre, int stock, std::string director, std::string name, int year) : genre(genre), stock(stock), director(director), title(name), year(year) {}
+Movie::Movie(char genre, int stock, std::string dir, std::string name, int year) : genre(genre), stock(stock), director(dir), title(name), year(year) {}
 
 Movie::~Movie() {}
 
