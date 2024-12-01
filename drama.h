@@ -6,8 +6,12 @@ class Drama : public Movie {
 public:
     Drama(int stock, std::string director, std::string title, int year) : Movie('D', stock, director, title, year) {}
     std::string getSortingKey() const {
-        return getDirector() + " " + getTitle();
+        return generateKey(getDirector(), getTitle());
     }
+    static std::string generateKey(std::string director, std::string title) {
+        return director + " " + title;
+    }
+    std::string getMergeKey() const { return ""; }
 };
 
 #endif

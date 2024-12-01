@@ -13,7 +13,7 @@ using namespace std;
 
 int main() {
     // Read movies into hashtable
-    ifstream infile("datafiles/data4movies.txt");
+    ifstream infile("/Users/spatiejunas/Documents/UW/Sophomore/AU24/CSS343/Program 4/datafiles/data4movies.txt");
 	if (!infile) {
 		cout << "File could not be opened." << endl;
 		return 1;
@@ -29,7 +29,7 @@ int main() {
 		if (movie == nullptr) {
 			continue;
 		}
-		if (movie->getGenre() == 'C') {
+		if (movie->getGenre() == 'F') {
 			comedyTree.insert(movie);
 		}
 		else if (movie->getGenre() == 'D') {
@@ -41,7 +41,7 @@ int main() {
 	}
 
 	// Read customers into hashtable
-	ifstream infile2("datafiles/data4customers.txt");
+	ifstream infile2("/Users/spatiejunas/Documents/UW/Sophomore/AU24/CSS343/Program 4/datafiles/data4customers.txt");
 	if (!infile2) {
 		cout << "File could not be opened." << endl;
 		return 1;
@@ -57,18 +57,23 @@ int main() {
 	}
 
 	// Read transactions and process
-	ifstream infile3("datafiles/data4commands.txt");
+	ifstream infile3("/Users/spatiejunas/Documents/UW/Sophomore/AU24/CSS343/Program 4/datafiles/data4commands.txt");
 	if (!infile3) {
 		cout << "File could not be opened." << endl;
 		return 1;
 	}
+	std::vector<Transaction*> transactions;
 	while (!infile3.eof()) {
 		string line;
 		getline(infile3, line);
 		Transaction* transaction = TransactionFactory::createTransaction(line, comedyTree, dramaTree, classicsTree, customerTable);
 		if (transaction != nullptr) {
+			transactions.push_back(transaction);
 			transaction->doTransaction(comedyTree, dramaTree, classicsTree, customerTable);
 		}
+	}
+	for (auto t : transactions) {
+		delete t;
 	}
 	return 0;
 }

@@ -13,6 +13,6 @@ void Return::doTransaction(BST<Movie>& comedyTree, BST<Movie>& dramaTree, BST<Mo
 }
 
 std::ostream& operator<<(std::ostream& os, const Return& r) {
-    os << "Returned " << r.getMovie()->getTitle() << " by " << r.getMovie()->getDirector() << std::endl;
+    os << "Returned " << r.getMovie()->getTitle() << " by " << r.getMovie()->getDirector();
     return os;
 }

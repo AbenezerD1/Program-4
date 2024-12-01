@@ -10,8 +10,7 @@ public:
     CustomerTable(int cap);
     ~CustomerTable();
     bool insert(Customer* customer);
-    bool remove(int customerID);
-    bool get(int customerID, Customer* customer);
+    bool get(int customerID, Customer*& customer);
     int getSize() const { return size; }
     bool isEmpty() const { return size == 0; }
 

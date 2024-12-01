@@ -4,14 +4,6 @@ Movie::Movie(char genre, int stock, std::string director, std::string name, int 
 
 Movie::~Movie() {}
 
-char Movie::getGenre() const {
-    return genre;
-}
-
-int Movie::getStock() const {
-    return stock;
-}
-
 bool Movie::decrementStock() { 
     if (stock == 0) { 
         return false;
@@ -26,18 +18,6 @@ void Movie::incrementStock() {
 
 void Movie::increaseStock(int amount) {
     stock += amount;
-}
-
-std::string Movie::getDirector() const {
-    return director;
-}
-
-std::string Movie::getTitle() const {
-    return title;
-}
-
-int Movie::getYear() const {
-    return year;
 }
 
 bool Movie::operator==(const Movie& rhs) const {

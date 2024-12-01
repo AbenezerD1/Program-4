@@ -11,7 +11,7 @@ public:
     int getID() const { return id; }
     std::string getLastName() const { return lastName; }
     std::string getFirstName() const { return firstName; }
-    std::vector<Transaction*> getTransactionHistory() const { return transactionHistory; }
+    const std::vector<Transaction*>& getTransactionHistory() const { return transactionHistory; }
     void addTransaction(Transaction* transaction) { transactionHistory.push_back(transaction); }
 private:
     int id;

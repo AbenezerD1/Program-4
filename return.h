@@ -6,7 +6,7 @@
 class Return : public Transaction {
     friend std::ostream& operator<<(std::ostream& os, const Return& r);
 public:
-    Return(int customerID, char mediaType, char movieType, Movie* movie) : Transaction('R'), customerID(customerID), mediaType(mediaType), movieType(movieType), movie(movie) {}
+    Return(int customerID, char mediaType, char movieType, Movie*& movie) : Transaction('R'), customerID(customerID), mediaType(mediaType), movieType(movieType), movie(movie) {}
     void doTransaction(BST<Movie>& comedyTree, BST<Movie>& dramaTree, BST<Movie>& classicsTree, CustomerTable& customerTable);
     Movie* getMovie() const { return movie; }
 private:
