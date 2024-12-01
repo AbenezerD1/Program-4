@@ -12,6 +12,11 @@ class TransactionFactory {
 public:
     static Transaction* createTransaction(std::string& line, BST<Movie>& comedyTree, BST<Movie>& dramaTree, BST<Movie>& classicsTree, CustomerTable& customerTable) {
         std::istringstream stream(line);
+        // Trim leading whitespace
+        stream >> std::ws;
+        if (stream.eof()) {
+            return nullptr;
+        }
         char type;
         stream >> type;
         if (type != 'B' && type != 'R' && type != 'I' && type != 'H') {
@@ -21,20 +26,15 @@ public:
         if (type == 'I') {
             return new Inventory();
         }
-        if (type == 'H') {
-            int customerID;
+        int customerID;
+        stream >> customerID;
+        if (type == 'H') {    
             return new History(customerID);
         }
         // If type is B or R
-        int customerID;
         char mediaType;
         char movieType;
-        stream >> customerID >> mediaType >> movieType;
-        // Parse customer ID
-        if (!customerTable.get(customerID, nullptr)) {
-            std::cout << "ERROR: " << customerID << " Customer Does Not Exist. Try Again." << std::endl;
-            return nullptr;
-        }
+        stream >> mediaType >> movieType;
         // If media type is not DVD
         if (mediaType != 'D') {
             std::cout << "ERROR: " << mediaType << " Invalid Media Type. Try Again." << std::endl;
@@ -42,7 +42,7 @@ public:
         }
         // If movie type is not Comedy, Drama, or Classics
         if (movieType != 'F' && movieType != 'D' && movieType != 'C') {
-            std::cout << "ERROR: " << movieType << " Invalid Movie Type. Try Again." << std::endl;
+            std::cout << "ERROR: " << movieType << " Invalid Genre. Try Again." << std::endl;
             return nullptr;
         }
         Movie* movie = nullptr;
@@ -50,13 +50,15 @@ public:
         if (movieType == 'F') {
             std::string title;
             int year;
+            stream >> std::ws;
             std::getline(stream, title, ',');
             title.erase(title.find_last_not_of(" ") + 1); // Trim trailing spaces
             stream.ignore(1); // Ignore space
             stream >> year;
-            std::string key = title + std::to_string(year);
-            if (!comedyTree.get(key, movie)) {
-                std::cout << "ERROR: Movie Does Not Exist In The Inventory. Try Again." << std::endl;
+            // std::string key = title + " " + std::to_string(year);
+            // std::cout << key << std::endl;
+            if (!comedyTree.get(Comedy::generateKey(title, year), movie)) {
+                std::cout << "ERROR: Comedy Movie Does Not Exist In The Inventory. Try Again." << std::endl;
                 return nullptr;
             }
         }
@@ -64,14 +66,15 @@ public:
         else if (movieType == 'D') {
             std::string director;
             std::string title;
-            std::getline(stream, title, ',');
-            title.erase(title.find_last_not_of(" ") + 1); // Trim trailing spaces
+            stream >> std::ws;
+            std::getline(stream, director, ',');
+            director.erase(director.find_last_not_of(" ") + 1); // Trim trailing spaces
             stream.ignore(1); // Ignore space
             std::getline(stream, title);
             title.erase(title.find_last_not_of(" ") + 1); // Trim trailing spaces
-            std::string key = director + " " + title;
-            if (!dramaTree.get(key, movie)) {
-                std::cout << "ERROR: Movie Does Not Exist In The Inventory. Try Again." << std::endl;
+            title.erase(title.find_last_of(","));
+            if (!dramaTree.get(Drama::generateKey(director, title), movie)) {
+                std::cout << "ERROR: Drama Movie Does Not Exist In The Inventory. Try Again." << std::endl;
                 return nullptr;
             }
         }
@@ -83,11 +86,16 @@ public:
             std::string actorFirstName;
             std::string actorLastName;
             stream >> month >> year >> actorFirstName >> actorLastName;
-            std::string key = actorFirstName + " " + actorLastName + " " + std::to_string(month) + " " + std::to_string(year);
-            if (!classicsTree.get(key, movie)) {
-                std::cout << "ERROR: Movie Does Not Exist In The Inventory. Try Again." << std::endl;
+            // std::string key = std::to_string(year) + " " + std::to_string(month) + " " + actorFirstName + " " + actorLastName;
+            // std::cout << key << std::endl;
+            if (!classicsTree.get(Classics::generateKey(year, month, actorFirstName, actorLastName), movie)) {
+                std::cout << "ERROR: Classics Movie Does Not Exist In The Inventory. Try Again." << std::endl;
                 return nullptr;
             }
+        }
+        if (!movie) {
+            std::cout << "ERROR: Movie Does Not Exist In The Inventory. Try Again." << std::endl;
+            return nullptr;
         }
         switch (type) {
         case 'B':

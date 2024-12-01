@@ -5,7 +5,7 @@
 
 class History : public Transaction {
 public:
-    History(int customerID) : Transaction('H') {}
+    History(int customerID) : Transaction('H'), customerID(customerID) {}
     void doTransaction(BST<Movie>& comedyTree, BST<Movie>& dramaTree, BST<Movie>& classicsTree, CustomerTable& customerTable);
 private:
     int customerID;
