@@ -43,26 +43,7 @@ bool CustomerTable::insert(Customer* customer) {
     return false;
 }
 
-bool CustomerTable::remove(int customerID) {
-    int index = hash(customerID);
-    // Linear probing
-    for (int i = 0; i < capacity; ++i) {
-        int newIndex = probe(index + i);
-        // Customer not found
-        if (table[newIndex] == nullptr) {
-            return false;
-        }
-        if (table[newIndex]->getID() == customerID) {
-            delete table[newIndex];
-            table[newIndex] = nullptr;
-            size--;
-            return true;
-        }
-    }
-    return false;
-}
-
-bool CustomerTable::get(int customerID, Customer* customer) {
+bool CustomerTable::get(int customerID, Customer*& customer) {
     int index = hash(customerID);
     // Linear probing
     for (int i = 0; i < capacity; ++i) {
