@@ -55,8 +55,6 @@ public:
             title.erase(title.find_last_not_of(" ") + 1); // Trim trailing spaces
             stream.ignore(1); // Ignore space
             stream >> year;
-            // std::string key = title + " " + std::to_string(year);
-            // std::cout << key << std::endl;
             if (!comedyTree.get(Comedy::generateKey(title, year), movie)) {
                 std::cout << "ERROR: Comedy Movie Does Not Exist In The Inventory. Try Again." << std::endl;
                 return nullptr;
@@ -86,8 +84,6 @@ public:
             std::string actorFirstName;
             std::string actorLastName;
             stream >> month >> year >> actorFirstName >> actorLastName;
-            // std::string key = std::to_string(year) + " " + std::to_string(month) + " " + actorFirstName + " " + actorLastName;
-            // std::cout << key << std::endl;
             if (!classicsTree.get(Classics::generateKey(year, month, actorFirstName, actorLastName), movie)) {
                 std::cout << "ERROR: Classics Movie Does Not Exist In The Inventory. Try Again." << std::endl;
                 return nullptr;

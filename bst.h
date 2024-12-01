@@ -79,12 +79,7 @@ private:
     void inorderPrint(BSTNode<Movie>* node) const {
         if (node != nullptr) {
             inorderPrint(node->left);
-            if (node->data->getGenre() == 'C') {
-                Classics* c = static_cast<Classics*>(node->data);
-                std::cout << *c << std::endl;
-            } else {
-                std::cout << *(node->data) << std::endl;
-            }
+            std::cout << *(node->data) << std::endl;
             inorderPrint(node->right);
         }
     }
