@@ -28,7 +28,6 @@ public:
     int getStock() const { return stock; }
     bool decrementStock();
     void incrementStock();
-    void increaseStock(int amount);
     std::string getDirector() const { return director; }
     std::string getTitle() const { return title; }
     int getYear() const { return year; }

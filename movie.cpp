@@ -4,6 +4,7 @@ Movie::Movie(char genre, int stock, std::string director, std::string name, int 
 
 Movie::~Movie() {}
 
+// Returns false if cannot decrease stock
 bool Movie::decrementStock() { 
     if (stock == 0) { 
         return false;
@@ -14,10 +15,6 @@ bool Movie::decrementStock() {
 
 void Movie::incrementStock() {
     stock++;
-}
-
-void Movie::increaseStock(int amount) {
-    stock += amount;
 }
 
 bool Movie::operator==(const Movie& rhs) const {

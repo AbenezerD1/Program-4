@@ -24,7 +24,6 @@ class BST {
 public:
     BST() : root(nullptr) {}
     ~BST() { destroyHelper(root); }
-
     void insert(Movie* movie) { insert(root, movie); }
     bool get(const std::string& key, Movie*& movie) { return get(root, key, movie); }
     bool inorderSearch(const std::string& key, Movie*& movie) { return inorderSearch(root, key, movie); }

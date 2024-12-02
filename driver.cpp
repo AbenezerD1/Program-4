@@ -13,7 +13,7 @@ using namespace std;
 
 int main() {
     // Read movies into hashtable
-    ifstream infile("/Users/spatiejunas/Documents/UW/Sophomore/AU24/CSS343/Program 4/datafiles/data4movies.txt");
+    ifstream infile("datafiles/data4movies.txt");
 	if (!infile) {
 		cout << "File could not be opened." << endl;
 		return 1;
@@ -41,7 +41,7 @@ int main() {
 	}
 
 	// Read customers into hashtable
-	ifstream infile2("/Users/spatiejunas/Documents/UW/Sophomore/AU24/CSS343/Program 4/datafiles/data4customers.txt");
+	ifstream infile2("datafiles/data4customers.txt");
 	if (!infile2) {
 		cout << "File could not be opened." << endl;
 		return 1;
@@ -57,11 +57,12 @@ int main() {
 	}
 
 	// Read transactions and process
-	ifstream infile3("/Users/spatiejunas/Documents/UW/Sophomore/AU24/CSS343/Program 4/datafiles/data4commands.txt");
+	ifstream infile3("datafiles/data4commands.txt");
 	if (!infile3) {
 		cout << "File could not be opened." << endl;
 		return 1;
 	}
+	// Transaction vector holding pointers to delete once done
 	std::vector<Transaction*> transactions;
 	while (!infile3.eof()) {
 		string line;
