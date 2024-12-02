@@ -1,8 +1,12 @@
+#ifndef CLASSICSSUMMARY_H
+#define CLASSICSSUMMARY_H
+
 #include <vector>
 #include "classics.h"
 
 class ClassicsSummary {
 public:
+    // Adds classic to summary vector
     void add(Classics* classic) {
         if (summary.empty()) {
             summary.push_back(classic);
@@ -13,6 +17,7 @@ public:
         }
         summary.push_back(classic);
     }
+    // Prints all actor variants of the classic and clears vector
     void flush() {
         int total = 0;
         for (auto s : summary) {
@@ -32,3 +37,5 @@ public:
 private:
     std::vector<Classics*> summary;
 };
+
+#endif

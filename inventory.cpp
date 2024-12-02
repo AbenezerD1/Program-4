@@ -1,5 +1,6 @@
 #include "inventory.h"
 
+// Prints all movies in stock
 void Inventory::doTransaction(BST<Movie>& comedyTree, BST<Movie>& dramaTree, BST<Movie>& classicsTree, CustomerTable& customerTable) {
     std::cout << "----------------------------------------------------------------------------------------------" << std::endl;
     std::cout << "Comedies:" << std::endl;
