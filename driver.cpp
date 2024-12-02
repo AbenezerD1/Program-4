@@ -18,7 +18,6 @@ int main() {
 		cout << "File could not be opened." << endl;
 		return 1;
 	}
-	// MovieTable movieTable(100);
 	BST<Movie> comedyTree;
 	BST<Movie> dramaTree;
 	BST<Movie> classicsTree;
