@@ -9,6 +9,11 @@ class CustomerFactory {
 public:
     static Customer* createCustomer(std::string& line) {
         std::istringstream stream(line);
+        // Trim leading whitespace
+        stream >> std::ws;
+        if (stream.eof()) {
+            return nullptr;
+        }
         int id;
 		std::string lastName;
 		std::string firstName;
