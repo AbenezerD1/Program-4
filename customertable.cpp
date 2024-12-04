@@ -36,6 +36,7 @@ bool CustomerTable::insert(Customer* customer) {
         }
         // Avoid duplicate customer IDs
         if (table[newIndex]->getID() == customerID) {
+            delete customer;
             return false;
         }
     }

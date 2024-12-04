@@ -8,6 +8,12 @@
 class Customer {
 public:
     Customer(int id, std::string lastName, std::string firstName) : id(id), lastName(lastName), firstName(firstName) {}
+    ~Customer() {
+        for (Transaction* transaction : transactionHistory) {
+            transaction = nullptr; // Prevent double delete
+        }
+        transactionHistory.clear();
+    }
     int getID() const { return id; }
     std::string getLastName() const { return lastName; }
     std::string getFirstName() const { return firstName; }
