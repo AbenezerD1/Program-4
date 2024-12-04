@@ -11,8 +11,13 @@ class MovieFactory {
 public:
     static Movie* createMovie(std::string& line) {
         std::istringstream stream(line);
-        char type;
-        int stock;
+        // Trim leading whitespace
+        stream >> std::ws;
+        if (stream.eof()) {
+            return nullptr;
+        }
+        char type = '\0';
+        int stock = 0;
         std::string director;
         std::string title;
         int year;
