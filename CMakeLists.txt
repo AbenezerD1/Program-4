@@ -48,7 +48,7 @@ add_custom_target(function_tests COMMAND env GTEST_COLOR=1 ${CMAKE_CTEST_COMMAND
 add_custom_target(mem_tests COMMAND env GTEST_COLOR=1 ${CMAKE_CTEST_COMMAND} --test-action memcheck)
 
 add_subdirectory(src)
-# add_subdirectory(test)
+add_subdirectory(test)
 
 # code coverage, only run on Linux (e.g. during Github Action)
 if (UNIX AND RUN_COV)
