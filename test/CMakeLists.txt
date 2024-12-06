@@ -1,4 +1,4 @@
-FILE(GLOB ProblemSource ./unit_test_*.cpp)
+FILE(GLOB ProblemSource test_*/unit_test_*.cpp)
 add_executable(${PROJECT_NAME}_unit_test main.cpp ${ProblemSource})
 
 include_directories(${CMAKE_LIBRARY_PATH})
