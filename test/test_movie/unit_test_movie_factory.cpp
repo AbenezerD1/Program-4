@@ -2,7 +2,7 @@
 #include "../src/MovieShop.h"
 
 TEST(moviefactory, create_movie){
-    std::string str = "F, 10, Nora Ephron, Sleepless in Seattle, 1993";
+    string str = "F, 10, Nora Ephron, Sleepless in Seattle, 1993";
     Movie* actual = MovieFactory::createMovie(str);
     Movie* expected = new Comedy(10,"Nora Ephron","Sleepless in Seattle",1993);
 
