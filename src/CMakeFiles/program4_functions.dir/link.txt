@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../lib/libprogram4_functions.a CMakeFiles/program4_functions.dir/MovieShop.cpp.o CMakeFiles/program4_functions.dir/borrow.cpp.o CMakeFiles/program4_functions.dir/classics.cpp.o CMakeFiles/program4_functions.dir/customertable.cpp.o CMakeFiles/program4_functions.dir/driver.cpp.o CMakeFiles/program4_functions.dir/history.cpp.o CMakeFiles/program4_functions.dir/inventory.cpp.o CMakeFiles/program4_functions.dir/movie.cpp.o CMakeFiles/program4_functions.dir/return.cpp.o
-/usr/bin/ranlib ../lib/libprogram4_functions.a
