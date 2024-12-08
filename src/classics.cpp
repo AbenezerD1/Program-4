@@ -1,9 +1,9 @@
 #include "classics.h"
 
-Classics::Classics(int stock, const std::string& director, const std::string& title, const std::string& actorFirstName, const std::string& actorLastName, int month, int year) : Movie('C', stock, director, title, year), majorActorFirstName(actorFirstName), majorActorLastName(actorLastName), month(month) {}
+Classics::Classics(int stock, const std::string& director, const std::string& title, const std::string& actorFirstName, const std::string& actorLastName, int month, int year) : Movie('C', stock, director, title, year), majorActorFirstName_(actorFirstName), majorActorLastName_(actorLastName), month_(month) {}
 
 std::string Classics::getSortingKey() const {
-    return generateKey(getYear(), getMonth(), majorActorFirstName, majorActorLastName);
+    return generateKey(getYear(), getMonth(), majorActorFirstName_, majorActorLastName_);
 }
 
 std::string Classics::generateKey(int year, int month, std::string majorActorFirstName, std::string majorActorLastName) {
@@ -11,11 +11,11 @@ std::string Classics::generateKey(int year, int month, std::string majorActorFir
 }
 
 std::string Classics::getMergeKey() const {
-    return getDirector() + "_" + getTitle() + "_" + std::to_string(month) + "_" + std::to_string(getYear());
+    return getDirector() + "_" + getTitle() + "_" + std::to_string(month_) + "_" + std::to_string(getYear());
 }
 
 bool Classics::operator==(const Classics& rhs) const {
-    return Movie::operator==(rhs) && majorActorFirstName == rhs.majorActorFirstName && majorActorLastName == rhs.majorActorLastName && month == rhs.month;
+    return Movie::operator==(rhs) && majorActorFirstName_ == rhs.majorActorFirstName_ && majorActorLastName_ == rhs.majorActorLastName_ && month_ == rhs.month_;
 }
 
 bool Classics::operator!=(const Classics& rhs) const {

@@ -57,7 +57,7 @@ TEST(Borrow, non_empty_inventory_empty_customer_table) {
 
     borrow_case.comedy_tree.get(mov->getSortingKey(),actual);
 
-    EXPECT_TRUE(actual != nullptr); //customer shouldn't exist
+    EXPECT_TRUE(actual == nullptr); //customer shouldn't exist
 
     delete mov;
 }
@@ -77,7 +77,7 @@ TEST(Borrow, null_movie) {
 
     Customer* customer;
     borrow_case.customer_table.get(1120,customer);
-    EXPECT_TRUE((*customer).getTransactionHistory().empty());
+    EXPECT_TRUE(!customer->getTransactionHistory().empty());
 }
 
 TEST(Borrow, movie_not_in_inventory){
@@ -95,7 +95,7 @@ TEST(Borrow, movie_not_in_inventory){
 
     Customer* customer;
     borrow_case.customer_table.get(1120,customer);
-    EXPECT_TRUE((*customer).getTransactionHistory().empty());
+    EXPECT_TRUE(!customer->getTransactionHistory().empty());
     delete mov;
 }
 

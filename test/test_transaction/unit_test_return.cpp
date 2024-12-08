@@ -34,7 +34,7 @@ TEST(Returns, empty_customer_table) {
     Movie* actual;
     return_case.comedy_tree.get(mov->getSortingKey(),actual);
 
-    EXPECT_EQ(actual,mov);
+    EXPECT_EQ(*actual,*mov);
     delete mov;
 }
 

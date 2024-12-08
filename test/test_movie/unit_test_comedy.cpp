@@ -34,6 +34,6 @@ TEST(comedy, construct_non_string_title) {
 }
 
 TEST(comedy, construct_negative_year) {
-    Comedy actual = Comedy(100, "Jhon Doe", "Title", 2000);
+    Comedy actual = Comedy(100, "Jhon Doe", "Title", -2000);
     EXPECT_EQ(actual.getYear(), 0);
 }

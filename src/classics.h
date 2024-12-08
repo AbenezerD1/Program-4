@@ -11,7 +11,7 @@ class Classics : public Movie {
            << std::setw(8)  << m.getMedia()
            << std::setw(35) << m.getTitle()
            << std::setw(22) << m.getDirector()
-           << std::setw(8)  << m.month
+           << std::setw(8)  << m.month_
            << std::setw(8)  << m.getYear();
         return os;
     }
@@ -20,15 +20,15 @@ public:
     std::string getSortingKey() const;
     static std::string generateKey(int year, int month, std::string majorActorFirstName, std::string majorActorLastName);
     std::string getMergeKey() const;
-    std::string getMajorActorFirstName() const { return majorActorFirstName; }
-    std::string getMajorActorLastName() const { return majorActorLastName; }
-    int getMonth() const { return month; }
+    std::string getMajorActorFirstName() const { return majorActorFirstName_; }
+    std::string getMajorActorLastName() const { return majorActorLastName_; }
+    int getMonth() const { return month_; }
     virtual bool operator==(const Classics& rhs) const;
     virtual bool operator!=(const Classics& rhs) const;
 private:
-    std::string majorActorFirstName;
-    std::string majorActorLastName;
-    int month;
+    std::string majorActorFirstName_;
+    std::string majorActorLastName_;
+    int month_;
 };
 
 #endif

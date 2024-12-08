@@ -34,6 +34,6 @@ TEST(Drama, construct_non_string_title) {
 }
 
 TEST(Drama, construct_negative_year) {
-    Drama actual = Drama(100, "Jhon Doe", "Title", 2000);
+    Drama actual = Drama(100, "Jhon Doe", "Title", -2000);
     EXPECT_EQ(actual.getYear(), 0);
 }

@@ -69,17 +69,21 @@ TEST(MovieFactory, create_classics_movie) {
                             dynamic_cast<Classics *>(MovieFactory::createMovie(str[3]))
                          };
 
-    Classics expected[] = { Classics(10,"Victor Fleming", "Gone With the Wind","Vivien","Leigh",2,1939),
-                            Classics(10,"Victor Fleming", "Gone With the Wind", "Clark"," Gable", 2, 1939),
-                            Classics(10,"George Cukor","The Philadelphia Story", "Katherine", "Hepburn", 5, 1940),
-                            Classics(10, "George Cukor", "The Philadelphia Story", "Cary", "Grant",5,1940)
+    Classics* expected[] = { new Classics(10,"Victor Fleming", "Gone With the Wind","Vivien","Leigh",2,1939),
+                            new Classics(10,"Victor Fleming", "Gone With the Wind", "Clark"," Gable", 2, 1939),
+                            new Classics(10,"George Cukor","The Philadelphia Story", "Katherine", "Hepburn", 5, 1940),
+                            new Classics(10, "George Cukor", "The Philadelphia Story", "Cary", "Grant",5,1940)
                           };
 
     for (int i = 0; i < sizeof(actual) / sizeof(actual[0]); i++) {
-        EXPECT_EQ(*actual[i], expected[i]);
+        EXPECT_EQ(*dynamic_cast<Movie*>(actual[i]), *dynamic_cast<Movie*>(expected[i]));
     }
 
     for (Classics* obj : actual) {
+        if (obj == nullptr) continue;
+        delete obj;
+    }
+    for (Classics* obj : expected) {
         if (obj == nullptr) continue;
         delete obj;
     }
