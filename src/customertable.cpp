@@ -54,7 +54,7 @@ bool CustomerTable::get(int customerID, Customer*& customer) {
             customer = nullptr;
             return false;
         }
-        if (table[newIndex]->getID() == customerID) {
+        if (customerID > 0 && table[newIndex]->getID() == customerID) {
             customer = table[newIndex];
             return true;
         }

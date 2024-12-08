@@ -76,7 +76,7 @@ TEST(MovieFactory, create_classics_movie) {
                           };
 
     for (int i = 0; i < sizeof(actual) / sizeof(actual[0]); i++) {
-        EXPECT_TRUE(*actual[i] == expected[i]) << *actual[i] << std::endl << expected[i];
+        EXPECT_EQ(*actual[i], expected[i]);
     }
 
     for (Classics* obj : actual) {

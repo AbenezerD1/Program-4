@@ -6,10 +6,13 @@ void Return::doTransaction(BST<Movie>& comedyTree, BST<Movie>& dramaTree, BST<Mo
     Customer* customer = nullptr;
     if (!customerTable.get(customerID, customer)) {
         std::cout << "ERROR: Borrow Transaction Failed -- Customer " << customerID << " does not exist" << std::endl;
+        return;
     }
-    customer->addTransaction(this);
-    // Increase stock if customer exists
-    movie->incrementStock();
+    if(movie != nullptr){
+        customer->addTransaction(this);
+        // Increase stock if customer exists
+        movie->incrementStock();
+    }
 }
 
 std::ostream& operator<<(std::ostream& os, const Return& r) {

@@ -11,7 +11,7 @@ void Borrow::doTransaction(BST<Movie>& comedyTree, BST<Movie>& dramaTree, BST<Mo
     customer->addTransaction(this);
     // Decrease stock if customer exists
     // If movie stock is 0 and movie is classics
-    if (!movie->decrementStock() && movie->getGenre() == 'C') {
+    if (movie != nullptr && !movie->decrementStock() && movie->getGenre() == 'C') {
         // Check if title matches existing movie, but different director
         Movie* otherMovie = nullptr;
         if (classicsTree.inorderSearch(movie->getMergeKey(), otherMovie)) {
