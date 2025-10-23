@@ -1,4 +1,5 @@
 # Movie Inventory tracking system
+CSS 343 Group Final Project - Movie Inventory tracking system using C++
 
 ## Priorities:
 * Able to quickly search for a customer with hashtable
